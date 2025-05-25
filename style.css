@@ -1,0 +1,55 @@
+body {
+  background: linear-gradient(135deg, #ff9ccf, #ff66a3);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+h1 {
+  font-size: 2.8em;
+  margin-bottom: 40px;
+  text-shadow: 0 0 6px #ff66a3;
+}
+
+button {
+  background: #ff66a3;
+  border: none;
+  border-radius: 25px;
+  padding: 15px 40px;
+  font-size: 1.5em;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 102, 163, 0.6);
+  transition: background 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+button:hover {
+  background: #ff4a85;
+  transform: scale(1.05);
+}
+
+#effect {
+  margin-top: 30px;
+  font-size: 3em;
+  animation: blow 3s ease-in-out;
+  text-shadow: 0 0 8px #ffe6f1;
+  color: #fff9fc;
+}
+
+audio {
+  display: none; /* Hide audio player */
+}
+
+@keyframes blow {
+  0%   { opacity: 0; transform: translateY(30px); }
+  50%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-20px); }
+}

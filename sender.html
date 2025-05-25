@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Send Wind to Baby 💨</title>
+
+  <!-- Firebase SDKs (compat style for direct use) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9ccf, #ff66a3);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 40px;
+      text-shadow: 0 0 6px #ff66a3;
+    }
+
+    button {
+      background: #ff66a3;
+      border: none;
+      border-radius: 25px;
+      padding: 15px 40px;
+      font-size: 1.5em;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(255, 102, 163, 0.6);
+      transition: background 0.3s ease, transform 0.2s ease;
+      user-select: none;
+    }
+
+    button:hover {
+      background: #ff4a85;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Send Wind to Baby 💨</h1>
+  <button id="blowBtn">Blow Wind 💨</button>
+
+  <script>
+    // Your Firebase config here
+    const firebaseConfig = {
+      apiKey: "AIzaSyAp-dftDgczMNUNkCImagTkjCRn4onn-z4",
+      authDomain: "ldrbreeze.firebaseapp.com",
+      databaseURL: "https://ldrbreeze-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "ldrbreeze",
+      storageBucket: "ldrbreeze.appspot.com",
+      messagingSenderId: "996009734210",
+      appId: "1:996009734210:web:83fa612750fed27cdc3ddb",
+      measurementId: "G-MR784XNL4W"
+    };
+
+    // Initialize Firebase (compat)
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    // Send wind trigger on button click
+    document.getElementById("blowBtn").addEventListener("click", () => {
+      db.ref("wind").set({ trigger: true });
+      alert("Wind sent! 💨");
+    });
+  </script>
+</body>
+</html>

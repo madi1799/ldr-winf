@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wind From Baby 💨</title>
+
+  <!-- Firebase SDKs (Compat style for direct HTML usage) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+  <script>
+    // ✅ Your Firebase config (no 'import' used here!)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAp-dftDgczMNUNkCImagTkjCRn4onn-z4",
+      authDomain: "ldrbreeze.firebaseapp.com",
+      databaseURL: "https://ldrbreeze-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "ldrbreeze",
+      storageBucket: "ldrbreeze.appspot.com",
+      messagingSenderId: "996009734210",
+      appId: "1:996009734210:web:83fa612750fed27cdc3ddb",
+      measurementId: "G-MR784XNL4W"
+    };
+
+    // ✅ Initialize Firebase (Compat style)
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+
+  <style>
+    body {
+      text-align: center;
+      padding-top: 100px;
+      font-family: "Comic Sans MS", cursive;
+      background: #fff0f5;
+    }
+    h1 {
+      color: #ff3399;
+      font-size: 2em;
+    }
+    #effect {
+      display: none;
+      font-size: 2.5em;
+      margin-top: 20px;
+      animation: blow 3s ease-in-out;
+    }
+
+    @keyframes blow {
+      0%   { opacity: 0; transform: translateY(30px); }
+      50%  { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Waiting for wind from baby... 🥺💨</h1>
+  <div id="effect">💨 Wooo~ Wind from baby! 💗</div>
+  <audio id="windSound" src="wind.mp3" preload="auto"></audio>
+
+  <script>
+    const effect = document.getElementById("effect");
+    const windSound = document.getElementById("windSound");
+
+    db.ref("wind").on("value", (snapshot) => {
+      const data = snapshot.val();
+      if (data && data.trigger) {
+        // Show wind animation and play sound
+        effect.style.display = "block";
+        windSound.play();
+
+        // Hide effect after 4 seconds
+        setTimeout(() => {
+          effect.style.display = "none";
+        }, 4000);
+
+        // Reset trigger
+        db.ref("wind").set({ trigger: false });
+      }
+    });
+  </script>
+</body>
+</html>
